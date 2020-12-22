@@ -4,6 +4,7 @@ import VueAwesomeSwiper from "vue-awesome-swiper";
 import "swiper/swiper-bundle.css";
 import animated from "animate.css";
 import "./assets/css/animate.min.css";
+import "./assets/css/base.css"
 
 Vue.use(animated);
 Vue.use(VueAwesomeSwiper);

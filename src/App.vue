@@ -26,6 +26,8 @@ html {
 }
 #app {
   height: 100%;
+  width: 100%;
+  position: relative;
 }
 .swiper-container {
   height: 100%;

@@ -1,9 +1,9 @@
 <template>
   <div class="login-container">
-    <div class="wrapper">
-      <a-input placeholder="请输入手机号"></a-input>
-      <a-input placeholder="请输入身份证后六位"></a-input>
-      <div @click="handleClick" class="check">查看我的年度账单</div>
+    <div class="wrapper" >
+      <a-input placeholder="请输入手机号" class="ani" swiper-animate-effect="lightSpeedIn" swiper-animate-duration="1s" swiper-animate-delay="0.3s"></a-input>
+      <a-input placeholder="请输入身份证后六位" class="ani" swiper-animate-effect="lightSpeedIn" swiper-animate-duration="1s" swiper-animate-delay="0.7s"></a-input>
+      <div @click="handleClick" class="check ani" swiper-animate-effect="swing" swiper-animate-duration="1s" swiper-animate-delay="1.6s">查看我的年度账单</div>
     </div>
   </div>
 </template>
@@ -34,11 +34,10 @@ export default {
   display: flex;
   align-items: flex-end;
   .wrapper {
-    width: 200px;
-    margin: 0 auto 80px;
+    width: 250px;
+    margin: 0 auto 100px;
     text-align: center;
-    .ant-input,
-    .ant-btn {
+    .ant-input {
       margin-bottom: 16px;
     }
   }
@@ -49,7 +48,10 @@ export default {
     font-size: 18px;
     padding: 8px 16px;
     border-radius: 10px;
-    color:rgb(238, 185, 38);
+    color:#fff;
+    font-weight: 600;
+    letter-spacing: 3px;
+    margin-top: 36px;
   }
 }
 </style>

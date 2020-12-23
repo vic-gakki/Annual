@@ -1,16 +1,16 @@
 <template>
   <div class="overview-container">
     <div class="header">
-      <div class="circle-btn">总</div>
-      <div class="circle-btn">计</div>
+      <div class="circle-btn ani" swiper-animate-effect="bounceInDown" swiper-animate-duration="0.8s" swiper-animate-delay="0s">总</div>
+      <div class="circle-btn ani" swiper-animate-effect="bounceInDown" swiper-animate-duration="0.8s" swiper-animate-delay=".5s">计</div>
     </div>
     <div class="content">
-      <p class="overview-content">总收入：<span class="high-light">8.0</span> 万元</p>
-      <p class="overview-content">工资类发放合计：<span class="high-light">5.27</span> 万元</p>
-      <p class="overview-content">福利类发放合计：<span class="high-light">0.99</span> 万元</p>
-      <p class="overview-content">单位缴纳保险合计：<span class="high-light">2.79</span> 万元</p>
+      <p class="overview-content ani" swiper-animate-effect="bounceInRight" swiper-animate-duration="0.8s" swiper-animate-delay="1s">总收入：<span class="high-light">8.0</span> 万元</p>
+      <p class="overview-content ani" swiper-animate-effect="bounceInRight" swiper-animate-duration="0.8s" swiper-animate-delay="1.2s">工资类发放合计：<span class="high-light">5.27</span> 万元</p>
+      <p class="overview-content ani" swiper-animate-effect="bounceInRight" swiper-animate-duration="0.8s" swiper-animate-delay="1.4s">福利类发放合计：<span class="high-light">0.99</span> 万元</p>
+      <p class="overview-content ani" swiper-animate-effect="bounceInRight" swiper-animate-duration="0.8s" swiper-animate-delay="1.6s">单位缴纳保险合计：<span class="high-light">2.79</span> 万元</p>
     </div>
-    <div class="detail-btn">详情</div>
+    <div class="detail-btn ani" swiper-animate-effect="swing" swiper-animate-duration="0.8s" swiper-animate-delay="2s">详情</div>
   </div>
 </template>
 

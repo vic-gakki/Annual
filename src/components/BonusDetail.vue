@@ -1,8 +1,8 @@
 <template>
   <div class="bonus-container">
-    <div class="title">{{title}}</div>
+    <div class="title ani" swiper-animate-effect="bounceInDown" swiper-animate-duration="0.8s" swiper-animate-delay="0s">{{title}}</div>
     <div class="content">
-      <p class="item" v-for="item of data" :key="item.label">{{item.label}}：<span class="high-light">{{item.value}}</span> 万元</p>
+      <p class="item ani" swiper-animate-effect="bounceInRight" swiper-animate-duration="0.8s" :swiper-animate-delay="(index + 1) * 0.5 + 's'" v-for="(item, index) of data" :key="item.label">{{item.label}}：<span class="high-light">{{item.value}}</span> 万元</p>
     </div>
   </div>
 </template>
@@ -31,9 +31,11 @@ export default {
     width: 280px;
     margin: 0 auto;
     font-size: 22px;
+    font-weight: 600;
+    letter-spacing: .3em;
     border-radius: 8px;
     background-color: rgb(238, 185, 38);
-    color: red;
+    color: #fff;
   }
   .content {
     margin-top: 24px;

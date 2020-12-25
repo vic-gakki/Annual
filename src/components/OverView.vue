@@ -1,22 +1,12 @@
 <template>
   <div class="overview-container">
-    <div class="header">
-      <div
-        class="circle-btn ani"
-        swiper-animate-effect="bounceInDown"
-        swiper-animate-duration="0.8s"
-        swiper-animate-delay="0s"
-      >
-        总
-      </div>
-      <div
-        class="circle-btn ani"
-        swiper-animate-effect="bounceInDown"
-        swiper-animate-duration="0.8s"
-        swiper-animate-delay=".5s"
-      >
-        计
-      </div>
+    <div
+      class="header ani"
+      swiper-animate-effect="bounceInDown"
+      swiper-animate-duration="0.8s"
+      swiper-animate-delay="0s"
+    >
+      收入类合计
     </div>
     <div class="content">
       <p
@@ -25,7 +15,7 @@
         swiper-animate-duration="0.8s"
         swiper-animate-delay="0.8s"
       >
-        收入类合计：<span class="high-light">8.0</span> 万元
+        总收入：<span class="high-light">8.0</span> 万元
       </p>
       <p
         class="overview-content ani"
@@ -77,26 +67,29 @@ export default {};
   display: flex;
   flex-direction: column;
   align-items: center;
-  padding: 0 40px;
+  padding-top: 80px;
   .header {
-    width: 100%;
-    margin-top: 50px;
-    display: flex;
-    padding: 8px 0;
-    justify-content: space-around;
+    text-align: center;
+    margin: 0 auto;
+    font-size: calc(20 / 320 * 100vw);
+    padding: 8px 24px;
+    font-weight: 600;
+    letter-spacing: 0.2em;
+    border-radius: 8px;
+    background-color: rgb(238, 185, 38);
+    color: #fff;
   }
   .content {
-    width: 100%;
     font-size: calc(18 / 320 * 100vw);
     font-weight: 600;
-    line-height: calc(36px + (100vh - 568px) * 0.139);
+    line-height: calc(50px + (100vh - 568px) * 0.143);
     .high-light {
       color: rgb(238, 185, 38);
     }
   }
   .detail-btn {
     font-size: 18px;
-        margin-top: 8px;
+    margin-top: 8px;
     background-color: red;
     border: 1px solid red;
     border-radius: 5px;

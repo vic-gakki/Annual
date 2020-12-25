@@ -58,7 +58,7 @@ export default {
   justify-content: space-between;
   .bill-img {
     width: 100%;
-    margin-top: calc(48 / 375 * 100vw);
+    margin-top: calc(48px + (100vh - 568px) * 0.41);
   }
   .wrapper {
     width: 250px;

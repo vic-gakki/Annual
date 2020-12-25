@@ -1,6 +1,6 @@
 .circle-btn {
-  width: calc(80 / 375 * 100vw);
-  height: calc(80 / 375 * 100vw);
+  width: calc(60px + (100vh - 568px) * 0.123);
+  height: calc(60px + (100vh - 568px) * 0.123);
   border-radius: 50%;
   display: flex;
   align-items: center;

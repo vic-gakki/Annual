@@ -47,6 +47,7 @@
       swiper-animate-effect="swing"
       swiper-animate-duration="1.5s"
       swiper-animate-delay="2.5s"
+      @click="goNext"
     >
       <span>详</span>
       <span>情</span>
@@ -55,7 +56,10 @@
 </template>
 
 <script>
-export default {};
+export default {
+  name: "OverView",
+  inject: ['goNext']
+};
 </script>
 
 <style lang="less" scoped>

@@ -21,7 +21,6 @@ export default {};
   width: 100%;
   background: url("../assets/image/jiyu.png") center/cover;
   .post-face {
-    width: 100%;
     padding: calc(85px + (100vh - 568px) * 0.1434) 32px 0;
     font-size: calc(22 / 375 * 100vw);
     font-weight: 500;

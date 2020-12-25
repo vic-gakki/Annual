@@ -8,13 +8,16 @@
         swiper-animate-effect="lightSpeedIn"
         swiper-animate-duration="1s"
         swiper-animate-delay="0.3s"
+        v-model="account"
       ></a-input>
       <a-input
+      type="password"
         placeholder="请输入身份证后六位"
         class="ani"
         swiper-animate-effect="lightSpeedIn"
         swiper-animate-duration="1s"
         swiper-animate-delay="0.7s"
+        v-model="password"
       ></a-input>
       <div
         @click="handleClick"
@@ -30,17 +33,23 @@
 </template>
 
 <script>
-import { Input } from "ant-design-vue";
+import { Input, message } from "ant-design-vue";
 export default {
   name: "Login",
   props: {},
-  components: { AInput: Input },
+  components: { AInput: Input},
   watch: {},
   data() {
-    return {};
+    return {
+      account: "",
+      password: ""
+    };
   },
   methods: {
     handleClick() {
+      if(!this.account || !this.password){
+        return message.error('账号密码不匹配')
+      }
       this.$emit("next");
     }
   }

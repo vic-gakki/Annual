@@ -1,5 +1,6 @@
 <template>
   <div class="login-container">
+    <img src="../assets/image/bill-bg.png" alt="" class="bill-img">
     <div class="wrapper" >
       <a-input placeholder="请输入手机号" class="ani" swiper-animate-effect="lightSpeedIn" swiper-animate-duration="1s" swiper-animate-delay="0.3s"></a-input>
       <a-input placeholder="请输入身份证后六位" class="ani" swiper-animate-effect="lightSpeedIn" swiper-animate-duration="1s" swiper-animate-delay="0.7s"></a-input>
@@ -30,14 +31,20 @@ export default {
 .login-container {
   height: 100%;
   width: 100%;
-  background: url('../assets/image/first-page.jpg') center/cover;
+  padding: 120px 0 80px 0;
+  background: url('../assets/image/first-page.jpg') center/cover no-repeat;
   display: flex;
-  align-items: flex-end;
+  flex-direction: column;
+  justify-content: space-between;
+  .bill-img {
+    width: 100%;
+    margin-top: calc(48 / 375 * 100vw)
+  }
   .wrapper {
     width: 250px;
-    margin: 0 auto 100px;
+    margin: 0 auto;
     text-align: center;
-    .ant-input {
+    .ant-input:first-child {
       margin-bottom: 16px;
     }
   }

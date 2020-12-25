@@ -1,11 +1,14 @@
 <template>
   <div class="annual-container">
     <div class="fixed-header-container">
-      <div class="logo"></div>
-      <div
+      <p class="privacy">企业机密，仅供个人查询</p>
+      <div class="logo-music">
+        <div class="logo"></div>
+        <div
         :class="['music-bg', { 'pause-music': isPaused }]"
         @click="togglePlayState"
       ></div>
+      </div>
     </div>
     <div class="fixed-right-container">
       <img src="../assets/image/arrow.png" alt="" />
@@ -20,6 +23,7 @@
       <swiper-slide
         ><bonus-detail title="单位缴纳保险详情" :data="insurance"></bonus-detail
       ></swiper-slide>
+      <swiper-slide><post-face></post-face></swiper-slide>
       <swiper-slide><ending></ending></swiper-slide>
     </swiper>
   </div>
@@ -33,6 +37,7 @@ import Ending from "./Ending.vue";
 import Login from "./Login";
 import OverView from "./OverView.vue";
 import Wishes from "./Wishes";
+import PostFace from './PostFace'
 const bonus = [
   { label: "防暑及取暖费", value: 111 },
   { label: "疗休费", value: 222 },
@@ -50,7 +55,7 @@ const insurance = [
 ];
 export default {
   name: "Annual",
-  components: { Login, Wishes, OverView, BonusDetail, Ending },
+  components: { Login, Wishes, OverView, BonusDetail, PostFace, Ending },
   data() {
     return {
       swiperOptions: {
@@ -70,7 +75,7 @@ export default {
           slideChange(swiper) {
             if (swiper.activeIndex === 1) {
               swiper.allowSlidePrev = false;
-            } else if (swiper.activeIndex === 5) {
+            } else if (swiper.activeIndex === 6) {
               swiper.allowSlideNext = false;
             } else {
               swiper.allowSlideNext = true;
@@ -112,35 +117,41 @@ export default {
     position: absolute;
     width: 100%;
     z-index: 2;
-    .logo {
-      width: 50px;
-      height: 64px;
-      left: 0;
-      position: absolute;
-      background: url("../assets/image/telecom.webp") center/cover no-repeat;
+    display: flex;
+    justify-content: space-between;
+    .privacy {
+      padding: 5px 8px;
+    font-size: 12px;
     }
-    .music-bg {
-      width: 30px;
-      position: absolute;
-      right: 16px;
-      top: 16px;
-      height: 30px;
-      border-radius: 15px;
-      background-image: url("../assets/image/bg-music.svg");
-      background-size: contain;
-      background-repeat: no-repeat;
-      animation: running 1.2s linear infinite;
-
-      &.pause-music {
-        animation-play-state: paused;
-        &:before {
-          content: "";
-          display: block;
-          height: 1px;
-          background-color: #fff;
-          position: absolute;
-          top: 50%;
-          width: 100%;
+    .logo-music {
+          display: flex;
+    flex-direction: column;
+    align-items: center;
+      .logo {
+        width: 50px;
+        height: 64px;
+        background: url("../assets/image/telecom.webp") center/cover no-repeat;
+      }
+      .music-bg {
+        width: 30px;
+        height: 30px;
+        border-radius: 15px;
+        background-image: url("../assets/image/bg-music.svg");
+        background-size: contain;
+        background-repeat: no-repeat;
+        animation: running 1.2s linear infinite;
+  
+        &.pause-music {
+          animation-play-state: paused;
+          &:before {
+            content: "";
+            display: block;
+            height: 1px;
+            background-color: #fff;
+            position: absolute;
+            top: 50%;
+            width: 100%;
+          }
         }
       }
     }

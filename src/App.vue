@@ -28,6 +28,10 @@ html {
   height: 100%;
   width: 100%;
   position: relative;
+  color: #fff;
+  p {
+      margin: 0;
+    } 
 }
 .swiper-container {
   height: 100%;

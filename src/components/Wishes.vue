@@ -2,18 +2,17 @@
   <div class="wishes-container">
     <div class="words">
     <p class="name ani" swiper-animate-effect="fadeInUp" swiper-animate-duration="0.8s" swiper-animate-delay="0.3s">刘心洁：</p>
-    <p class="content first ani" swiper-animate-effect="fadeInUp" swiper-animate-duration="1.5s" swiper-animate-delay="0.6s">感谢您一年以来的无</p>
-    <p class="content ani" swiper-animate-effect="fadeInUp" swiper-animate-duration="1.5s" swiper-animate-delay="0.8s">私奉奉献，辛勤劳动，让</p>
-    <p class="content ani" swiper-animate-effect="fadeInUp" swiper-animate-duration="1.5s" swiper-animate-delay="1.0s">我们携起起手来，在以后</p>
-    <p class="content ani" swiper-animate-effect="fadeInUp" swiper-animate-duration="1.5s" swiper-animate-delay="1.2s">的日子里，共创辉煌！</p>
+    <p class="content first-line ani" swiper-animate-effect="fadeInUp" swiper-animate-duration="0.8s" swiper-animate-delay="0.6s">您好！</p>
+    <p class="content first-line ani" swiper-animate-effect="fadeInUp" swiper-animate-duration="2.5s" swiper-animate-delay="0.8s">感谢2020年的温暖陪伴，这一年刻骨铭心，疫情中的战斗、烈日中的冲锋、风雪中的坚守，每一位电信人都为创一流公司写下了浓墨重彩的一笔。</p>
+    <p class="content first-line ani last" swiper-animate-effect="fadeInUp" swiper-animate-duration="2.5s" swiper-animate-delay="1.5s">这一年，我们一起干出了达州电信的新高度——全年收入目标圆满完成，收入能力增长全省第4；春、暑促综合排名位列全省前3；新大楼拔地而起；员工年收入创历史新高，工资总额、人工成本增幅双超收入增幅。</p>
     </div>
-    <div class="open circle-btn">开</div>
+    <div class="open circle-btn ani infinite" swiper-animate-effect="poping" swiper-animate-duration="0.8s">开</div>
   </div>
 </template>
 
 <script>
 export default {
-
+  
 }
 </script>
 
@@ -25,40 +24,24 @@ export default {
   display: flex;
   flex-direction: column;
   align-items: center;
-  padding-top: 120px;
+  padding-top: 70px;
   .words {
-    width: 300px;
-    margin: 0 auto;
-    font-size: 22px;
-    font-weight: 600;
+       padding: 0 32px;
+    font-size: calc(22 / 375 * 100vw);
+    font-weight: 500;
     color: #fff;
     text-align: justify;
-    p {
-      margin: 0;
-      letter-spacing: .2em
-    }
-    .first {
+    .first-line {
       text-indent: 2em;
     }
     .content {
       line-height: 2;
-      overflow: hidden;
+      font-size: calc(18 / 375 * 100vw);
+      font-weight: 400;
     }
   }
   .open {
-    margin-top: 56px;
-    animation: poping .8s infinite;
-  }
-}
-@keyframes poping {
-  0% {
-    transform: scale(.9);
-  }
-  50% {
-    transform: scale(1.1);
-  }
-  100% {
-    transform: scale(.9);
+    margin-top: calc(56px + (100vw - 375px) * 0.7);
   }
 }
 </style>

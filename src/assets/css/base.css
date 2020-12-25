@@ -1,12 +1,12 @@
 .circle-btn {
-  width: 80px;
-  height: 80px;
+  width: calc(80 / 375 * 100vw);
+  height: calc(80 / 375 * 100vw);
   border-radius: 50%;
   display: flex;
   align-items: center;
   justify-content: center;
   background-color: rgb(238, 185, 38);
-  font-size: 22px;
+  font-size: calc(22 / 375 * 100vw);
   font-weight: 600;
   color: #fff;
 }

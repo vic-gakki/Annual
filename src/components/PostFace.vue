@@ -19,15 +19,15 @@ export default {};
 .post-face-container {
   height: 100%;
   width: 100%;
-  background: url("../assets/image/jiyu.png") center/cover;
+  background: url("../assets/image/jiyu.jpg") center/cover;
   .post-face {
-    padding: calc(85px + (100vh - 568px) * 0.1434) 32px 0;
-    font-size: calc(22 / 375 * 100vw);
+    padding: calc(115px + (100vh - 568px) * 0.164) 32px 0;
+    line-height: calc(28px + (100vh - 568px) * 0.0655);
+      font-size: calc(18 / 375 * 100vw);
     font-weight: 500;
     color: #fff;
     text-align: justify;
     text-indent: 2em;
-    line-height: 2;
   }
   .open {
     margin-top: calc(56px + (100vw - 375px) * 0.7);

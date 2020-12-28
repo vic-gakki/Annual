@@ -11,13 +11,13 @@
         v-model="account"
       ></a-input>
       <a-input
-      type="password"
         placeholder="请输入身份证后六位"
         class="ani"
         swiper-animate-effect="lightSpeedIn"
         swiper-animate-duration="1s"
         swiper-animate-delay="0.7s"
         v-model="password"
+        @keyup.enter="handleClick"
       ></a-input>
       <div
         @click="handleClick"
@@ -46,11 +46,16 @@ export default {
     };
   },
   methods: {
-    handleClick() {
+    async handleClick() {
       if(!this.account || !this.password){
         return message.error('账号密码不匹配')
       }
-      this.$emit("next");
+      const res = await this.$http.get("/bill", {params: {
+        phone: this.account,
+        idcard: this.password
+      }})
+      console.log(res)
+      this.$emit("next", res.data);
     }
   }
 };

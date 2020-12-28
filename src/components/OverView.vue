@@ -13,36 +13,13 @@
         class="overview-content ani"
         swiper-animate-effect="bounceInRight"
         swiper-animate-duration="0.8s"
-        swiper-animate-delay="0.8s"
+        :swiper-animate-delay="0.8 + index * 0.4 + 's'"
+        v-for="(item, index) of overview"
+        :key="item.key"
       >
-        总收入：<span class="high-light">8.0</span> 万元
+        {{item.label}}：<span class="high-light">{{item.value}}</span> 万元
       </p>
-      <p
-        class="overview-content ani"
-        swiper-animate-effect="bounceInRight"
-        swiper-animate-duration="0.8s"
-        swiper-animate-delay="1.2s"
-      >
-        工资类发放合计：<span class="high-light">5.27</span> 万元
-      </p>
-      <p
-        class="overview-content ani"
-        swiper-animate-effect="bounceInRight"
-        swiper-animate-duration="0.8s"
-        swiper-animate-delay="1.6s"
-      >
-        福利类发放合计：<span class="high-light">0.99</span> 万元
-      </p>
-      <p
-        class="overview-content ani"
-        swiper-animate-effect="bounceInRight"
-        swiper-animate-duration="0.8s"
-        swiper-animate-delay="2s"
-      >
-        单位缴纳保险合计：<span class="high-light">2.79</span> 万元
-      </p>
-    </div>
-    <div
+      <div
       class="detail-btn ani"
       swiper-animate-effect="swing"
       swiper-animate-duration="1.5s"
@@ -52,13 +29,15 @@
       <span>详</span>
       <span>情</span>
     </div>
+    </div>
   </div>
 </template>
 
 <script>
 export default {
   name: "OverView",
-  inject: ['goNext']
+  inject: ['goNext'],
+  props: ['overview']
 };
 </script>
 
@@ -66,12 +45,12 @@ export default {
 .overview-container {
   height: 100%;
   width: 100%;
-  background: url("../assets/image/detail-bg.jpg") center/cover;
+  background: url("../assets/image/bonus-bg.jpg") center/cover;
   overflow: hidden;
   display: flex;
   flex-direction: column;
   align-items: center;
-  padding-top: 80px;
+  padding-top: calc(80px + (100vh - 568px) * 0.082);
   .header {
     text-align: center;
     margin: 0 auto;
@@ -84,14 +63,21 @@ export default {
     color: #fff;
   }
   .content {
+    flex: 1;
     font-size: calc(18 / 320 * 100vw);
     font-weight: 600;
-    line-height: calc(50px + (100vh - 568px) * 0.143);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: space-around;
+    padding-bottom: calc(160px + (100vh - 568px) * 0.246);
+    p {
+      width: 100%;
+    }
     .high-light {
       color: rgb(238, 185, 38);
     }
-  }
-  .detail-btn {
+    .detail-btn {
     font-size: 18px;
     margin-top: 8px;
     background-color: red;
@@ -99,12 +85,14 @@ export default {
     border-radius: 5px;
     display: inline-block;
     height: 40px;
-    display: flex;
-    padding: 0 24px;
-    align-items: center;
+    line-height: 40px;
+    text-align: center;
+    padding: 0 36px;
     span:first-child {
       margin-right: 16px;
     }
   }
+  }
+  
 }
 </style>

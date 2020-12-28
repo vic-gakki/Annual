@@ -5,11 +5,13 @@ import "swiper/swiper-bundle.css";
 import animated from "animate.css";
 import "./assets/css/animate.css";
 import "./assets/css/base.css"
+import http from './http'
 
 Vue.use(animated);
 Vue.use(VueAwesomeSwiper);
 
 Vue.config.productionTip = false;
+Vue.prototype.$http = http
 
 new Vue({
   render: h => h(App)

@@ -10,13 +10,13 @@
         ></div>
       </div>
     </div>
-    <div class="fixed-right-container" v-show="curIndex !== 6">
+    <div class="fixed-right-container" v-show="curIndex !== 6 && curIndex !== 0">
       <img src="../assets/image/arrow.png" alt="" />
     </div>
     <swiper ref="mySwiper" :options="swiperOptions">
       <swiper-slide><login @next="goNext"></login></swiper-slide>
-      <swiper-slide><wishes></wishes></swiper-slide>
-      <swiper-slide><over-view></over-view></swiper-slide>
+      <swiper-slide><wishes :name="name"></wishes></swiper-slide>
+      <swiper-slide><over-view :overview="overview"></over-view></swiper-slide>
       <swiper-slide
         ><bonus-detail title="福利类发放详情" :data="bonus"></bonus-detail
       ></swiper-slide>
@@ -26,7 +26,7 @@
       <swiper-slide><post-face></post-face></swiper-slide>
       <swiper-slide><ending></ending></swiper-slide>
     </swiper>
-    <audio src="../assets/media/happy-new-year.mp3" ref="bgMusic"></audio>
+    <audio src="../assets/media/bg-music.mp3" ref="bgMusic" loop></audio>
   </div>
 </template>
 
@@ -39,20 +39,28 @@ import Login from "./Login";
 import OverView from "./OverView.vue";
 import Wishes from "./Wishes";
 import PostFace from "./PostFace";
+const overview = [
+  { key: "sum_1", label: "总收入", value: 0 },
+  { key: "sum_2", label: "工资类发放合计", value: 0 },
+  { key: "sum_3", label: "福利类发放合计", value: 0 },
+  { key: "sum_4", label: "单位缴纳保险合计", value: 0 },
+];
 const bonus = [
-  { label: "防暑及取暖费", value: 111 },
-  { label: "疗休费", value: 222 },
-  { label: "体检费", value: 333 },
-  { label: "伙食及驻地补贴", value: 444 },
-  { label: "补充门诊补贴", value: 555 },
-  { label: "其他福利费", value: 666 },
+  { key: "sum_3_1", label: "防暑及取暖费", value: 0 },
+  { key: "sum_3_2", label: "疗休费", value: 0 },
+  { key: "sum_3_3", label: "体检费", value: 0 },
+  { key: "sum_3_4", label: "伙食及驻地补贴", value: 0 },
+  { key: "sum_3_5", label: "补充门诊补贴", value: 0 },
+  { key: "sum_3_6", label: "其他福利费", value: 0 },
+  { key: "sum_3", label: "小计", value: 0 },
 ];
 const insurance = [
-  { label: "住房公积金", value: 621 },
-  { label: "基本养老保险", value: 1298 },
-  { label: "基本医疗保险", value: 1378 },
-  { label: "企业年金", value: 1837 },
-  { label: "其他费用", value: 1368 },
+  { key: "sum_4_1", label: "住房公积金", value: 0 },
+  { key: "sum_4_2", label: "基本养老保险", value: 0 },
+  { key: "sum_4_3", label: "基本医疗保险", value: 0 },
+  { key: "sum_4_4", label: "企业年金", value: 0 },
+  { key: "sum_4_5", label: "其他费用", value: 0 },
+  { key: "sum_4", label: "小计", value: 0 },
 ];
 export default {
   name: "Annual",
@@ -95,8 +103,11 @@ export default {
       },
       bonus,
       insurance,
+      overview,
       isPaused: true,
       curIndex: 0,
+      name: "",
+
     };
   },
   computed: {
@@ -105,9 +116,10 @@ export default {
     },
   },
   methods: {
-    goNext() {
-      this.swiper.slideNext();
+    goNext(data) {
+      this.processData(data)
       this.swiper.allowTouchMove = true;
+      this.swiper.slideNext();
     },
     togglePlayState() {
       this.isPaused = !this.isPaused;
@@ -117,7 +129,18 @@ export default {
         this.$refs.bgMusic.pause();
       }
     },
-   
+    processData(data){
+      this.name = data.p_1
+      this.bonus.forEach(item => {
+        item.value = data[item.key] || 0
+      })
+      this.insurance.forEach(item => {
+        item.value = data[item.key] || 0
+      })
+      this.overview.forEach(item => {
+        item.value = data[item.key] || 0
+      })
+    }
   },
 };
 </script>
@@ -137,11 +160,11 @@ export default {
     .logo-music {
       display: flex;
       flex-direction: column;
-      align-items: center;
+      align-items: flex-end;
       .logo {
-        width: 50px;
-        height: 64px;
-        background: url("../assets/image/telecom.webp") center/cover no-repeat;
+        width: calc(80px + (100vh - 568px) * 0.082);
+        height: calc(80px + (100vh - 568px) * 0.082);
+        background: url("../assets/image/telecom-bg1.png") center/cover no-repeat;
       }
       .music-bg {
         width: 30px;
@@ -151,6 +174,7 @@ export default {
         background-size: contain;
         background-repeat: no-repeat;
         animation: running 1.2s linear infinite;
+        margin-right: 16px;
 
         &.pause-music {
           animation-play-state: paused;

@@ -17,18 +17,18 @@
         v-for="(item, index) of overview"
         :key="item.key"
       >
-        {{item.label}}：<span class="high-light">{{item.value}}</span> 万元
+        {{ item.label }}：<span class="high-light">{{ item.value }}</span> 万元
       </p>
       <div
-      class="detail-btn ani"
-      swiper-animate-effect="swing"
-      swiper-animate-duration="1.5s"
-      swiper-animate-delay="2.5s"
-      @click="goNext"
-    >
-      <span>详</span>
-      <span>情</span>
-    </div>
+        class="detail-btn ani"
+        swiper-animate-effect="swing"
+        swiper-animate-duration="1.5s"
+        swiper-animate-delay="2.5s"
+        @click="goNext"
+      >
+        <span>详</span>
+        <span>情</span>
+      </div>
     </div>
   </div>
 </template>
@@ -36,8 +36,8 @@
 <script>
 export default {
   name: "OverView",
-  inject: ['goNext'],
-  props: ['overview']
+  inject: ["goNext"],
+  props: ["overview"]
 };
 </script>
 
@@ -78,21 +78,20 @@ export default {
       color: rgb(238, 185, 38);
     }
     .detail-btn {
-    font-size: 18px;
-    margin-top: 8px;
-    background-color: red;
-    border: 1px solid red;
-    border-radius: 5px;
-    display: inline-block;
-    height: 40px;
-    line-height: 40px;
-    text-align: center;
-    padding: 0 36px;
-    span:first-child {
-      margin-right: 16px;
+      font-size: 18px;
+      margin-top: 8px;
+      background-color: red;
+      border: 1px solid red;
+      border-radius: 5px;
+      display: inline-block;
+      height: 40px;
+      line-height: 40px;
+      text-align: center;
+      padding: 0 36px;
+      span:first-child {
+        margin-right: 16px;
+      }
     }
   }
-  }
-  
 }
 </style>

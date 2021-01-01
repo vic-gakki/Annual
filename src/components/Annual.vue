@@ -5,13 +5,14 @@
       <div class="logo-music">
         <div class="logo"></div>
         <div
+        v-show="openJourney"
           :class="['music-bg', { 'pause-music': isPaused }]"
           @click="togglePlayState"
         ></div>
       </div>
     </div>
     <div class="fixed-right-container" v-show="curIndex !== 6 && curIndex !== 0">
-      <img src="../assets/image/arrow.png" alt="" />
+      <img src="../assets/image/arrow.png" alt=""/>
     </div>
     <swiper ref="mySwiper" :options="swiperOptions">
       <swiper-slide><login @next="goNext"></login></swiper-slide>
@@ -104,7 +105,8 @@ export default {
       bonus,
       insurance,
       overview,
-      isPaused: true,
+      isPaused: false,
+      openJourney: false,
       curIndex: 0,
       name: "",
 
@@ -118,6 +120,8 @@ export default {
   methods: {
     goNext(data) {
       this.processData(data)
+      this.openJourney = true
+      this.$refs.bgMusic.play();
       this.swiper.allowTouchMove = true;
       this.swiper.slideNext();
     },

@@ -50,12 +50,15 @@ export default {
       if(!this.account || !this.password){
         return message.error('账号密码不匹配')
       }
-      const res = await this.$http.get("/bill", {params: {
-        phone: this.account,
-        idcard: this.password
-      }})
-      console.log(res)
-      this.$emit("next", res.data);
+      try {
+        const res = await this.$http.get("/bill", {params: {
+          phone: this.account,
+          idcard: this.password
+        }})
+        this.$emit("next", res.data);
+      }catch(e){
+        console.log(e)
+      }
     }
   }
 };

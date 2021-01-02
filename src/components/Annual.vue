@@ -1,18 +1,23 @@
 <template>
   <div class="annual-container">
     <div class="fixed-header-container">
-      <p class="privacy">企业机密，仅供个人查询</p>
-      <div class="logo-music">
-        <div class="logo"></div>
+      <div class="privacy">
+        <p>企业机密，仅供个人查询</p>
         <div
-        v-show="openJourney"
+          v-show="openJourney"
           :class="['music-bg', { 'pause-music': isPaused }]"
           @click="togglePlayState"
         ></div>
       </div>
+      <div class="logo-music">
+        <div class="logo"></div>
+      </div>
     </div>
-    <div class="fixed-right-container" v-show="curIndex !== 6 && curIndex !== 0">
-      <img src="../assets/image/arrow.png" alt=""/>
+    <div
+      class="fixed-right-container"
+      v-show="curIndex !== 6 && curIndex !== 0"
+    >
+      <img src="../assets/image/arrow.png" alt="" />
     </div>
     <swiper ref="mySwiper" :options="swiperOptions">
       <swiper-slide><login @next="goNext"></login></swiper-slide>
@@ -109,7 +114,6 @@ export default {
       openJourney: false,
       curIndex: 0,
       name: "",
-
     };
   },
   computed: {
@@ -119,8 +123,8 @@ export default {
   },
   methods: {
     goNext(data) {
-      this.processData(data)
-      this.openJourney = true
+      this.processData(data);
+      this.openJourney = true;
       this.$refs.bgMusic.play();
       this.swiper.allowTouchMove = true;
       this.swiper.slideNext();
@@ -133,18 +137,18 @@ export default {
         this.$refs.bgMusic.pause();
       }
     },
-    processData(data){
-      this.name = data.p_1
-      this.bonus.forEach(item => {
-        item.value = data[item.key] || 0
-      })
-      this.insurance.forEach(item => {
-        item.value = data[item.key] || 0
-      })
-      this.overview.forEach(item => {
-        item.value = data[item.key] || 0
-      })
-    }
+    processData(data) {
+      this.name = data.p_1;
+      this.bonus.forEach((item) => {
+        item.value = data[item.key] || 0;
+      });
+      this.insurance.forEach((item) => {
+        item.value = data[item.key] || 0;
+      });
+      this.overview.forEach((item) => {
+        item.value = data[item.key] || 0;
+      });
+    },
   },
 };
 </script>
@@ -156,20 +160,14 @@ export default {
     width: 100%;
     z-index: 2;
     display: flex;
+    flex-direction: row-reverse;
     justify-content: space-between;
     .privacy {
       padding: 5px 8px;
       font-size: 12px;
-    }
-    .logo-music {
       display: flex;
       flex-direction: column;
       align-items: flex-end;
-      .logo {
-        width: calc(80px + (100vh - 568px) * 0.082);
-        height: calc(80px + (100vh - 568px) * 0.082);
-        background: url("../assets/image/telecom-bg1.png") center/cover no-repeat;
-      }
       .music-bg {
         width: 30px;
         height: 30px;
@@ -178,8 +176,7 @@ export default {
         background-size: contain;
         background-repeat: no-repeat;
         animation: running 1.2s linear infinite;
-        margin-right: 16px;
-
+        margin: 8px 8px 0 0;
         &.pause-music {
           animation-play-state: paused;
           &:before {
@@ -192,6 +189,17 @@ export default {
             width: 100%;
           }
         }
+      }
+    }
+    .logo-music {
+      display: flex;
+      flex-direction: column;
+      align-items: flex-end;
+      .logo {
+        width: calc(80px + (100vh - 568px) * 0.082);
+        height: calc(80px + (100vh - 568px) * 0.082);
+        background: url("../assets/image/telecom-bg1.png") center/cover
+          no-repeat;
       }
     }
   }

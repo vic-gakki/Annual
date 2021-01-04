@@ -32,9 +32,13 @@
       >
         查看我的年度账单
       </div>
-      <img class="company-bg ani" swiper-animate-effect="fadeInUp"
+      <img
+        class="company-bg ani"
+        swiper-animate-effect="fadeInUp"
         swiper-animate-duration=".5s"
-        swiper-animate-delay="2s" src="../assets/image/dazhou.png"/>
+        swiper-animate-delay="2s"
+        src="../assets/image/dazhou.png"
+      />
     </div>
   </div>
 </template>
@@ -49,7 +53,7 @@ export default {
   data() {
     return {
       account: "",
-      password: "",
+      password: ""
     };
   },
   methods: {
@@ -61,15 +65,15 @@ export default {
         const res = await this.$http.get("/bill", {
           params: {
             phone: this.account,
-            idcard: this.password,
-          },
+            idcard: this.password
+          }
         });
         this.$emit("next", res.data);
       } catch (e) {
         console.log(e);
       }
-    },
-  },
+    }
+  }
 };
 </script>
 

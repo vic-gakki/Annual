@@ -49,7 +49,7 @@ const overview = [
   { key: "sum_1", label: "总收入", value: 0 },
   { key: "sum_2", label: "工资类发放合计", value: 0 },
   { key: "sum_3", label: "福利类发放合计", value: 0 },
-  { key: "sum_4", label: "单位缴纳保险合计", value: 0 },
+  { key: "sum_4", label: "单位缴纳保险合计", value: 0 }
 ];
 const bonus = [
   { key: "sum_3_1", label: "防暑及取暖费", value: 0 },
@@ -58,7 +58,7 @@ const bonus = [
   { key: "sum_3_4", label: "伙食及驻地补贴", value: 0 },
   { key: "sum_3_5", label: "补充门诊补贴", value: 0 },
   { key: "sum_3_6", label: "其他福利费", value: 0 },
-  { key: "sum_3", label: "小计", value: 0 },
+  { key: "sum_3", label: "小计", value: 0 }
 ];
 const insurance = [
   { key: "sum_4_1", label: "住房公积金", value: 0 },
@@ -66,7 +66,7 @@ const insurance = [
   { key: "sum_4_3", label: "基本医疗保险", value: 0 },
   { key: "sum_4_4", label: "企业年金", value: 0 },
   { key: "sum_4_5", label: "其他费用", value: 0 },
-  { key: "sum_4", label: "小计", value: 0 },
+  { key: "sum_4", label: "小计", value: 0 }
 ];
 export default {
   name: "Annual",
@@ -75,26 +75,30 @@ export default {
     return {
       goNext: () => {
         this.swiper.slideNext();
-      },
+      }
     };
   },
   data() {
     return {
+      // info: {
+      //   account: "19198808139",
+      //   pass: "070385"
+      // },
       swiperOptions: {
         autoplay: false, // 是否自动播放
         height: window.innerHeight, // 高
         width: window.innerWidth, //宽
         allowTouchMove: false,
         on: {
-          init: function () {
+          init: function() {
             swiperAnimated.swiperAnimateCache(this); //隐藏动画元素
             swiperAnimated.swiperAnimate(this); //初始化完成开始动画
           },
-          slideChangeTransitionEnd: function () {
+          slideChangeTransitionEnd: function() {
             swiperAnimated.swiperAnimate(this); //每个slide切换结束时也运行当前slide动画
           },
 
-          slideChange: (swiper) => {
+          slideChange: swiper => {
             this.curIndex = swiper.activeIndex;
             if (swiper.activeIndex === 1) {
               swiper.allowSlidePrev = false;
@@ -104,8 +108,8 @@ export default {
               swiper.allowSlideNext = true;
               swiper.allowSlidePrev = true;
             }
-          },
-        },
+          }
+        }
       },
       bonus,
       insurance,
@@ -113,13 +117,13 @@ export default {
       isPaused: false,
       openJourney: false,
       curIndex: 0,
-      name: "",
+      name: ""
     };
   },
   computed: {
     swiper() {
       return this.$refs.mySwiper.$swiper;
-    },
+    }
   },
   methods: {
     goNext(data) {
@@ -139,17 +143,17 @@ export default {
     },
     processData(data) {
       this.name = data.p_1;
-      this.bonus.forEach((item) => {
+      this.bonus.forEach(item => {
         item.value = data[item.key] || 0;
       });
-      this.insurance.forEach((item) => {
+      this.insurance.forEach(item => {
         item.value = data[item.key] || 0;
       });
-      this.overview.forEach((item) => {
+      this.overview.forEach(item => {
         item.value = data[item.key] || 0;
       });
-    },
-  },
+    }
+  }
 };
 </script>
 <style lang="less" scoped>

@@ -61,7 +61,7 @@ export default {
   display: flex;
   flex-direction: column;
   align-items: center;
-  padding-top: 80px;
+  padding-top: calc(80px + (100vh - 568px) * 0.082);
   .words {
     padding: 0 32px;
     font-size: calc(22 / 375 * 100vw);
@@ -72,7 +72,7 @@ export default {
       text-indent: 2em;
     }
     .content {
-      line-height: calc(28px + (100vh - 568px) * 0.0655);
+      line-height: calc(24px + (100vh - 568px) * 0.0655);
       font-size: calc(18 / 375 * 100vw);
       font-weight: 400;
     }

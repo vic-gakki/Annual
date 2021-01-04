@@ -20,9 +20,21 @@
           v-model="password"
           @keyup.enter="handleClick"
         ></a-input>
+        <div
+        @click="handleClick"
+        class="check ani"
+        swiper-animate-effect="swing"
+        swiper-animate-duration="1s"
+        swiper-animate-delay="1.6s"
+      >
+        查看我的年度账单
+      </div>
+      <img class="company-bg ani" swiper-animate-effect="fadeInUp"
+        swiper-animate-duration=".5s"
+        swiper-animate-delay="2s" src="../assets/image/dazhou.png"/>
       </div>
     </div>
-    <div>
+    <!-- <div>
       <div
         @click="handleClick"
         class="check ani"
@@ -35,7 +47,7 @@
       <img class="company-bg ani" swiper-animate-effect="fadeInUp"
         swiper-animate-duration=".5s"
         swiper-animate-delay="2s" src="../assets/image/dazhou.png"/>
-    </div>
+    </div> -->
   </div>
 </template>
 
@@ -95,7 +107,7 @@ export default {
     }
   }
   .check {
-    width: 70%;
+    width: 100%;
     margin: 0 auto;
     text-align: center;
     background-color: red;
@@ -105,10 +117,10 @@ export default {
     color: #fff;
     font-weight: 600;
     letter-spacing: 3px;
+    margin: calc(48px + (100vh - 568px) * 0.0655) auto calc(16px + (100vh - 568px) * 0.0655);
   }
   .company-bg {
     width: 100%;
-    padding: 12px 60px 0 60px;
   }
 }
 </style>

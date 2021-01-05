@@ -1,4 +1,5 @@
 <template>
+  <div class="outer-wrapper">
   <div class="wishes-container">
     <div class="words">
       <p
@@ -43,6 +44,7 @@
       开
     </div>
   </div>
+  </div>
 </template>
 
 <script>
@@ -54,14 +56,34 @@ export default {
 </script>
 
 <style lang="less" scoped>
-.wishes-container {
+.outer-wrapper {
   height: 100%;
   width: 100%;
   background: url("../assets/image/jiyu.jpg") center/cover;
+   @media (min-width: 1024px) {
+    .wishes-container {
+      width: 1000px;
+      margin: 0 auto;
+      .words {
+        font-size: calc(22px + (100vw - 1024px) * 0.017);
+        .content {
+          font-size: calc(16px + (100vw - 1024px) * 0.017);
+          line-height: 70px;
+        }
+      }
+      .open {
+        margin-top: 60px;
+      }
+    }
+  }
+}
+.wishes-container {
+   height: 100%;
+  width: 100%;
   display: flex;
   flex-direction: column;
   align-items: center;
-  padding-top: 80px;
+  padding-top: calc(80px + (100vh - 568px) * 0.082);
   .words {
     padding: 0 32px;
     font-size: calc(22 / 375 * 100vw);
@@ -72,7 +94,7 @@ export default {
       text-indent: 2em;
     }
     .content {
-      line-height: calc(28px + (100vh - 568px) * 0.0655);
+      line-height: calc(24px + (100vh - 568px) * 0.0655);
       font-size: calc(18 / 375 * 100vw);
       font-weight: 400;
     }

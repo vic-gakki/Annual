@@ -1,9 +1,11 @@
 <template>
+  <div class="bonus-outer-wrapper">
   <div class="bonus-container">
     <div class="title ani" swiper-animate-effect="bounceInDown" swiper-animate-duration="0.8s" swiper-animate-delay="0s">{{title}}</div>
     <div class="content">
       <p class="item ani" swiper-animate-effect="bounceInRight" swiper-animate-duration="0.8s" :swiper-animate-delay="(index + 1) * 0.5 + 's'" v-for="(item, index) of data" :key="item.label">{{item.label}}：<span class="high-light">{{item.value}}</span> {{index === data.length - 1 ? '万' : ''}}元</p>
     </div>
+  </div>
   </div>
 </template>
 
@@ -31,10 +33,32 @@ export default {
 </script>
 
 <style lang="less" scoped>
+.bonus-outer-wrapper {
+   height: 100%;
+  width: 100%;
+  background: url('../assets/image/bonus-bg.jpg') center/cover;
+  @media (min-width: 1024px) {
+    .bonus-container {
+      width: 1000px;
+      margin: 0 auto;
+      .title {
+        font-size: calc(28px + (100vw - 1024px) * 0.017);
+        width: 600px;
+      }
+      .content {
+        width: 600px;
+        font-size: calc(22px + (100vw - 1024px) * 0.017);
+        margin:16px auto 60px auto;
+        .item {
+          padding-left: 0;
+        }
+      }
+    }
+  }
+}
 .bonus-container {
     height: 100%;
   width: 100%;
-  background: url('../assets/image/bonus-bg.jpg') center/cover;
   padding-top: calc(80px + (100vh - 568px) * 0.082);
   display: flex;
   flex-direction: column;

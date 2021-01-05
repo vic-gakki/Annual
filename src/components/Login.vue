@@ -1,6 +1,6 @@
 <template>
   <div class="login-container">
-    <div>
+    <div class="login-wrapper">
       <img src="../assets/image/bill-bg.png" alt="" class="bill-img" />
       <div class="wrapper">
         <a-input
@@ -34,20 +34,6 @@
         swiper-animate-delay="2s" src="../assets/image/dazhou.png"/>
       </div>
     </div>
-    <!-- <div>
-      <div
-        @click="handleClick"
-        class="check ani"
-        swiper-animate-effect="swing"
-        swiper-animate-duration="1s"
-        swiper-animate-delay="1.6s"
-      >
-        查看我的年度账单
-      </div>
-      <img class="company-bg ani" swiper-animate-effect="fadeInUp"
-        swiper-animate-duration=".5s"
-        swiper-animate-delay="2s" src="../assets/image/dazhou.png"/>
-    </div> -->
   </div>
 </template>
 
@@ -61,7 +47,7 @@ export default {
   data() {
     return {
       account: "",
-      password: "",
+      password: ""
     };
   },
   methods: {
@@ -73,15 +59,15 @@ export default {
         const res = await this.$http.get("/bill", {
           params: {
             phone: this.account,
-            idcard: this.password,
-          },
+            idcard: this.password
+          }
         });
         this.$emit("next", res.data);
       } catch (e) {
         console.log(e);
       }
-    },
-  },
+    }
+  }
 };
 </script>
 
@@ -91,9 +77,12 @@ export default {
   width: 100%;
   padding: 120px 0 calc(50px + (100vh - 568px) * 0.123) 0;
   background: url("../assets/image/first-page.jpg") center/cover no-repeat;
-  display: flex;
-  flex-direction: column;
-  justify-content: space-between;
+  @media (min-width: 1024px) {
+    .login-wrapper {
+      width: 900px;
+      margin: 0 auto;
+    }
+  }
   .bill-img {
     width: 100%;
     margin-top: calc(20px + (100vh - 568px) * 0.164);
@@ -118,6 +107,7 @@ export default {
     font-weight: 600;
     letter-spacing: 3px;
     margin: calc(48px + (100vh - 568px) * 0.0655) auto calc(16px + (100vh - 568px) * 0.0655);
+    cursor: pointer;
   }
   .company-bg {
     width: 100%;

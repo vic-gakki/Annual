@@ -1,4 +1,5 @@
 <template>
+  <div class="overview-outer-wrapper">
   <div class="overview-container">
     <div
       class="header ani"
@@ -31,6 +32,7 @@
       </div>
     </div>
   </div>
+  </div>
 </template>
 
 <script>
@@ -42,10 +44,35 @@ export default {
 </script>
 
 <style lang="less" scoped>
-.overview-container {
+.overview-outer-wrapper {
   height: 100%;
   width: 100%;
   background: url("../assets/image/bonus-bg.jpg") center/cover;
+   @media (min-width: 1024px) {
+    .overview-container {
+      width: 1000px;
+      margin: 0 auto;
+      .header {
+        font-size: calc(28px + (100vw - 1024px) * 0.017);
+        width: 600px;
+      }
+      .content {
+        font-size: calc(22px + (100vw - 1024px) * 0.017);
+        width: 600px;
+        padding-bottom: 60px;
+        .detail-btn {
+          font-size: calc(22px + (100vw - 1024px) * 0.017);
+          height: 60px;
+          line-height: 60px;
+          width: 300px;
+        }
+      }
+    }
+  }
+}
+.overview-container {
+  height: 100%;
+  width: 100%;
   overflow: hidden;
   display: flex;
   flex-direction: column;
@@ -88,6 +115,7 @@ export default {
       line-height: 40px;
       text-align: center;
       padding: 0 36px;
+      cursor: pointer;
       span:first-child {
         margin-right: 16px;
       }

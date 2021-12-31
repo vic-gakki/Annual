@@ -1,45 +1,55 @@
 <template>
   <div class="overview-outer-wrapper">
-  <div class="overview-container">
-    <div
-      class="header ani"
-      swiper-animate-effect="bounceInDown"
-      swiper-animate-duration="0.8s"
-      swiper-animate-delay="0s"
-    >
-      收入类合计
-    </div>
-    <div class="content">
-      <p
-        class="overview-content ani"
-        swiper-animate-effect="bounceInRight"
-        swiper-animate-duration="0.8s"
-        :swiper-animate-delay="0.8 + index * 0.4 + 's'"
-        v-for="(item, index) of overview"
-        :key="item.key"
-      >
-        {{ item.label }}：<span class="high-light">{{ item.value }}</span> 万元
-      </p>
+    <div class="overview-container">
       <div
-        class="detail-btn ani"
-        swiper-animate-effect="swing"
-        swiper-animate-duration="1.5s"
-        swiper-animate-delay="2.5s"
-        @click="goNext"
+        class="header ani"
+        swiper-animate-effect="bounceInDown"
+        swiper-animate-duration="0.8s"
+        swiper-animate-delay="0s"
       >
-        <span>详</span>
-        <span>情</span>
+        收入类合计
+      </div>
+      <div class="content">
+        <p
+          class="overview-content ani"
+          swiper-animate-effect="bounceInRight"
+          swiper-animate-duration="0.8s"
+          :swiper-animate-delay="0.8 + index * 0.4 + 's'"
+          v-for="(item, index) of overview"
+          :key="item.key"
+        >
+          {{ item.label }}：<span class="high-light">{{ item.value }}</span>
+          万元
+        </p>
+        <div
+          class="detail-btn ani"
+          swiper-animate-effect="swing"
+          swiper-animate-duration="1.5s"
+          swiper-animate-delay="2.5s"
+          @click="goNext"
+        >
+          <span>详</span>
+          <span>情</span>
+        </div>
+        <page-btn
+          class="pc-screen ani"
+          swiper-animate-effect="fadeInUp"
+          swiper-animate-duration="1s"
+          swiper-animate-delay="2.5s"
+        ></page-btn>
       </div>
     </div>
-  </div>
   </div>
 </template>
 
 <script>
+import PageBtn from "./PageBtn.vue";
+
 export default {
   name: "OverView",
   inject: ["goNext"],
-  props: ["overview"]
+  props: ["overview"],
+  components: { PageBtn },
 };
 </script>
 
@@ -48,7 +58,7 @@ export default {
   height: 100%;
   width: 100%;
   background: url("../assets/image/bonus-bg.jpg") center/cover;
-   @media (min-width: 1024px) {
+  @media (min-width: 1024px) {
     .overview-container {
       width: 1000px;
       margin: 0 auto;
@@ -65,6 +75,10 @@ export default {
           height: 60px;
           line-height: 60px;
           width: 300px;
+          display: none;
+        }
+        .pc-screen {
+          display: flex;
         }
       }
     }
@@ -119,6 +133,9 @@ export default {
       span:first-child {
         margin-right: 16px;
       }
+    }
+    .pc-screen {
+      display: none;
     }
   }
 }

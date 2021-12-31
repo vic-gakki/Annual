@@ -3,16 +3,19 @@
     <div class="login-wrapper">
       <img src="../assets/image/bill-bg.png" alt="" class="bill-img" />
       <div class="wrapper">
-        <a-input
-          placeholder="请输入手机号"
-          class="ani"
+        <div
+          class="account-wrapper ani"
           swiper-animate-effect="lightSpeedIn"
           swiper-animate-duration="1s"
           swiper-animate-delay="0.3s"
-          v-model="account"
-        ></a-input>
+        >
+          <a-input placeholder="请输入手机号" v-model="account"></a-input>
+          <a-button @click="getCaptura" :disabled="loading">{{
+            text
+          }}</a-button>
+        </div>
         <a-input
-          placeholder="请输入身份证后六位"
+          placeholder="请输入验证码"
           class="ani"
           swiper-animate-effect="lightSpeedIn"
           swiper-animate-duration="1s"
@@ -21,33 +24,47 @@
           @keyup.enter="handleClick"
         ></a-input>
         <div
-        @click="handleClick"
-        class="check ani"
-        swiper-animate-effect="swing"
-        swiper-animate-duration="1s"
-        swiper-animate-delay="1.6s"
-      >
-        查看我的年度账单
-      </div>
-      <img class="company-bg ani" swiper-animate-effect="fadeInUp"
-        swiper-animate-duration=".5s"
-        swiper-animate-delay="2s" src="../assets/image/dazhou.png"/>
+          @click="handleClick"
+          class="check ani"
+          swiper-animate-effect="swing"
+          swiper-animate-duration="1s"
+          swiper-animate-delay="1.6s"
+        >
+          查看我的年度账单
+        </div>
+        <img
+          class="company-bg ani"
+          swiper-animate-effect="fadeInUp"
+          swiper-animate-duration=".5s"
+          swiper-animate-delay="2s"
+          src="../assets/image/dazhou.png"
+        />
       </div>
     </div>
   </div>
 </template>
 
 <script>
-import { Input, message } from "ant-design-vue";
+import { Input, message, Button } from "ant-design-vue";
+const timeout = 60;
 export default {
   name: "Login",
   props: {},
-  components: { AInput: Input },
+  components: { [Input.name]: Input, [Button.name]: Button },
   watch: {},
+  computed: {
+    loading() {
+      return this.timeout > 0;
+    },
+    text() {
+      return this.loading ? `已发送(${this.timeout}s)` : "获取验证码";
+    },
+  },
   data() {
     return {
+      timeout: 0,
       account: "",
-      password: ""
+      password: "",
     };
   },
   methods: {
@@ -55,19 +72,46 @@ export default {
       if (!this.account || !this.password) {
         return message.error("账号密码不匹配");
       }
+      if (!/^[\d|\w]{6}$/.test(this.password)) {
+        return message.error("验证码为6位字符");
+      }
       try {
         const res = await this.$http.get("/bill", {
           params: {
             phone: this.account,
-            idcard: this.password
-          }
+            code: this.password,
+          },
         });
         this.$emit("next", res.data);
       } catch (e) {
         console.log(e);
       }
-    }
-  }
+    },
+    async getCaptura() {
+      if (!this.account) {
+        return message.error("请输入手机号");
+      }
+      if (!/^1\d{10}$/.test(this.account)) {
+        return message.error("请输入正确格式的手机号");
+      }
+      try {
+        await this.$http.get("/code", {
+          params: {
+            phone: this.account,
+          },
+        });
+        this.timeout = 60;
+        const interval = setInterval(() => {
+          this.timeout--;
+          if (this.timeout <= 0) {
+            clearInterval(interval);
+          }
+        }, 1000);
+      } catch (error) {
+        console.log(error);
+      }
+    },
+  },
 };
 </script>
 
@@ -91,8 +135,15 @@ export default {
     width: 78%;
     margin: calc(50px + (100vh - 568px) * 0.123) auto;
     text-align: center;
-    .ant-input:first-child {
+    .account-wrapper {
       margin-bottom: calc(16px + (100vh - 568px) * 0.0655);
+      display: flex;
+      /deep/ .ant-btn {
+        font-size: 12px;
+        padding: 0 8px;
+        margin-left: 5px;
+        min-width: 80px;
+      }
     }
   }
   .check {
@@ -106,7 +157,8 @@ export default {
     color: #fff;
     font-weight: 600;
     letter-spacing: 3px;
-    margin: calc(48px + (100vh - 568px) * 0.0655) auto calc(16px + (100vh - 568px) * 0.0655);
+    margin: calc(48px + (100vh - 568px) * 0.0655) auto
+      calc(16px + (100vh - 568px) * 0.0655);
     cursor: pointer;
   }
   .company-bg {
